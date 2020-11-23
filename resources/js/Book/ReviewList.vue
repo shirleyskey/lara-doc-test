@@ -12,7 +12,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <span class="text-bold">{{review.created_at}}</span>
+                    <span class="text-bold">{{review.created_at | fromNow}}</span>
                 </div>
             </div>
             <div class="row">
@@ -25,6 +25,8 @@
 </template>
 
 <script>
+// import moment from "moment";
+
     export default {
         props: {
             bookableId: String,
@@ -40,7 +42,12 @@
             axios.get(`/api/booklist/${this.bookableId}/reviews`)
                 .then( response => this.reviews = response.data.data)
                 .then(() => (this.loading = false));
-        }
+        },
+        // filters: {
+        //     fromNow(value){
+        //         return moment(value).fromNow();
+        //     }
+        // }
     }
 </script>
 
