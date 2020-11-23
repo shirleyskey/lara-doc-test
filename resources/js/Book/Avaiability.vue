@@ -1,6 +1,8 @@
 <template>
     <div>
         <h3 class="text-uppercase font-weight-bolder mb-4">Check Avaiability</h3>
+        <span v-if="noAvailibility" class="text-danger">(NOT AVAILIBILITY)</span>
+        <span v-if="hasAvailibility" class="text-success">(AVAILABLE)</span>
         <div class="form-row">
             <div class="form-group col-6">
                 <label for="from">From</label>
