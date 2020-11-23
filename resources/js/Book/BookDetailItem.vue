@@ -4,6 +4,7 @@
             <div class="col-8 mb-4">
                 <h1>{{bookDetailItem.title}}</h1>
                 <p>{{bookDetailItem.description}}</p>
+                <review-list></review-list>
             </div>
             <div class="col-4">
                 <avaiability></avaiability>
@@ -15,9 +16,11 @@
 
 <script>
 import Avaiability from './Avaiability.vue';
+import ReviewList from './ReviewList.vue';
     export default {
         components: {
-            Avaiability
+            Avaiability,
+            ReviewList
         },
         data(){
             return {
