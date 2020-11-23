@@ -30,3 +30,5 @@ Route::apiResource('booklist', 'Api\BookController')->only([
 
 Route::get('booklist/{id}/availibility', 'Api\BookableAvailabilityController')
     ->name('book.availbility.show');
+Route::get('booklist/{id}/reviews', 'Api\BookableReviewController')
+    ->name('book.review.index');
