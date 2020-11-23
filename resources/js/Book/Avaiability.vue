@@ -8,6 +8,7 @@
                     type="text" 
                     class="form-control-sm date" 
                     name="from" 
+                    id="from"
                     placeholder="Start Date"
                     v-model="from"
                     @keyup.enter="check"
@@ -19,6 +20,7 @@
                     type="text" 
                     class="form-control-sm date" 
                     name="to" 
+                    id="to"
                     placeholder="End Date"
                     v-model="to"
                     @keyup.enter="check"
@@ -39,12 +41,27 @@
         data(){
             return {
                 from: null, 
-                to: null
+                to: null, 
+                loading: false, 
+                status: null, 
+                errors: null,
             }
         },
         methods: {
             check(){
-                alert("I will check something now!");
+                this.loading = true;
+                this.errors = null;
+                axios.get(`/api/booklist/${this.$route.params.id}/availibility/?from=${this.from}&to=${this.to}`)
+                    .then( response => {
+                        this.status = response.status;
+                    })
+                    .catch (error => {
+                        if (422 === error.response.status) {
+                            this.errors = error.response.data.errors;
+                        }
+                        this.status = error.response.status;
+                    })
+                    .then(() => (this.loading = false));
             }
         }
     }
